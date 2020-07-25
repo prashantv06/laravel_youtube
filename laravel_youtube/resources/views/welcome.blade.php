@@ -77,19 +77,16 @@
                 </div>
             @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+            <form action="" method="POST">
+                @csrf
+                <div class="form-group-row">
+                    <div class="col-sm-10">
+                        Search Youtube Videos <input type="text" class="form-control" id="yt_url"> 
+                    </div>
                 </div>
+                <button type="submit" class="btn btn-success"> Search </button>
+            </form>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
         </div>
     </body>
 </html>

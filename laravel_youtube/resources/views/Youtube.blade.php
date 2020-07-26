@@ -20,6 +20,8 @@
 <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
 <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
 <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
 <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#563d7c">
 
@@ -41,34 +43,32 @@
       }
     </style>
     <link href="starter-template.css" rel="stylesheet">
-
-
     
 
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">
-          <img src="http://placehold.it/150x50?text=Logo" alt="">
+          <img src="/img/yt_logo.png" alt="YouTube Logo" style="height:40px;">
     </a>
-  <a class="navbar-brand">YouTube</a>
+  <a class="navbar-brand" style="color:#fff;">YouTube</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
   
-    <form class="form-inline my-2 my-lg-0 right">
-      <input class="form-control mr-sm-2" type="text" id="search_field" placeholder="Search" aria-label="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" id="yt_search" type="button">Search</button>
+    <form class="form-inline my-2 my-lg-0" style="margin-left:24%;">
+      <input class="form-control mr-sm-2" type="text" style="width:500px;" id="search_field" placeholder="Search" aria-label="Search">
+      <button class="btn my-2 my-sm-0" id="yt_search" style="background-color:#CE2F2B;color:#fff" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
     </form>
  
   </div>
 </nav>
 
 
-<main style="margin-top:100px;" role="main" class="container">
-  <div>  
+<main role="main" class="container">
+  <div style="margin-top:100px;">  
         <div id="result" >
           <div class="row"></div>
         </div>
@@ -83,13 +83,13 @@
       <script type="text/javascript">
 
 //document.addEventListener('DOMContentLoaded',function(){
-var key_id = "AIzaSyBeToWz-t7fHQbINk0MqpS4amOXGbYQXWU";
+var key_id = "AIzaSyCLJBWpOsrT3XVs5_fkbtH-BzrWvgLC7xY";
 var part = "snippet";
-
 var maxResults = 20;
 
    $('#yt_search').click(function(){
      var q = document.getElementById('search_field').value;
+     //var ajaxurl = 'https://www.googleapis.com/youtube/v3/search?part='+part+'&key='+key_id+'&q='+q+'&maxResults='+maxResults;
      var ajaxurl = 'https://www.googleapis.com/youtube/v3/search?part='+part+'&key='+key_id+'&q='+q;
      console.log(ajaxurl);
 

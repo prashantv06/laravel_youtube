@@ -22,6 +22,8 @@
 <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/fontawesome.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" />
+<link type="text/css" rel="stylesheet" href="path_to/simplePagination.css"/>
+<link rel="shortcut icon" href="/img/favicon.ico">
 <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#563d7c">
 
@@ -80,48 +82,48 @@
 <script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script></body>
 <script type="text/javascript" src="/css/jquery.simplePagination.js"></script>
 
+
 <script type="text/javascript">
 
 //document.addEventListener('DOMContentLoaded',function(){
 var key_id = "AIzaSyBEdk9CDHtYM1jb11AJXmnlmsV9joYy5wI";
 var part = "snippet";
-var maxResults = 4;
+var maxResults = 10;
 
    $('#yt_search').click(function(){
      var q = document.getElementById('search_field').value;
      var ajaxurl = 'https://www.googleapis.com/youtube/v3/search?part='+part+'&key='+key_id+'&q='+q+'&maxResults='+maxResults;
      //var ajaxurl = 'https://www.googleapis.com/youtube/v3/search?part='+part+'&key='+key_id+'&q='+q;
-     console.log(ajaxurl);
+     //console.log(ajaxurl);
 
-      $.ajax({
-        type: "GET",
-        url: ajaxurl,
-        dataType:"jsonp",
-        success: function(response){
-        //console.log(response);
-        
-        
-
-          if(response.items){
+    if(q != ""){
+          $.ajax({
+            type: "GET",
+            url: ajaxurl,
+            dataType:"jsonp",
+            success: function(response){
+            //console.log(response);
+            
+              if(response.items){
+                $("#result > .row").empty();
+                $("#result > .desc").empty();
+                $.each(response.items, function(i,items){
+                  var video_id=items.id.videoId;
+                  var video_title=items.snippet.title;
+                  // IFRAME Embed for YouTube     
+                  var video_frame="<div class='col-md-6 col-xs-12' style='margin-bottom:40px;'><iframe width='100%' height='385' src='http://www.youtube.com/embed/"+video_id+"' frameborder='0' type='text/html'></iframe><span align='center' style='font-weight:bold;font-size:22px;'>"+video_title+"</span></div>";
+                  $("#result > .row").append(video_frame);
+                });
+              }
+            }
+          });
+     }   
+     else{
             $("#result > .row").empty();
-            $("#result > .desc").empty();
-            $.each(response.items, function(i,items){
-
-              //console.log(items);
-
-              var video_id=items.id.videoId;
-              var video_title=items.snippet.title;
-              // IFRAME Embed for YouTube
-              var video_frame="<div class='col-md-6 col-xs-12' style='margin-bottom:40px;'><iframe width='100%' height='385' src='http://www.youtube.com/embed/"+video_id+"' frameborder='0' type='text/html'></iframe><span align='center' style='font-weight:bold;font-size:22px;'>"+video_title+"</span></div>";
-              $("#result > .row").append(video_frame); // Result
-             });
-          }
-          else{
-            $("#result > .row").html("<div id='no'>No Video</div>");
-          }
-        }
-      });
-
+            var blank_msg = "You just performed and empty search so we had nothing to show. Please try a new search!!"
+            var blank_desc="<div style='font-size:40px;font-weight:bold;font-family:inherit;color:black;margin-top:270px;'>"+blank_msg+"</div>";
+            $("#result > .row").append(blank_desc);
+     } 
 
   //});
 });

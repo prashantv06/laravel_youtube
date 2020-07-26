@@ -120,7 +120,7 @@ var maxResults = 10;
      }   
      else{
             $("#result > .row").empty();
-            var blank_msg = "You just performed and empty search so we had nothing to show. Please try a new search!!"
+            var blank_msg = "You just performed an empty search so we had nothing to show. Please try a new search!!"
             var blank_desc="<div style='font-size:40px;font-weight:bold;font-family:inherit;color:black;margin-top:270px;'>"+blank_msg+"</div>";
             $("#result > .row").append(blank_desc);
      } 

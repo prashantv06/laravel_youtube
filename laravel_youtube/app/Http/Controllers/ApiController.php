@@ -11,7 +11,7 @@ class ApiController extends Controller
     {   
 
         $client = new Client();
-        $res = $client->request('GET', 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyCLJBWpOsrT3XVs5_fkbtH-BzrWvgLC7xY&q=wordpress tutorial&maxResults=20');
+        $res = $client->request('GET', 'https://www.googleapis.com/youtube/v3/search?part=snippet&key=AIzaSyBEdk9CDHtYM1jb11AJXmnlmsV9joYy5wI&q=wordpress tutorial');
         $res->getStatusCode();
         // "200"
         $res->getHeader('content-type')[0];
@@ -21,6 +21,6 @@ class ApiController extends Controller
 
         //return view('Youtube')->with('response', $res_body_plain);
         return view('Youtube')->with('response', $res_body);
-        //return view('Youtube', $res_body_plain);
+        //return view('Youtube');
     }
 }

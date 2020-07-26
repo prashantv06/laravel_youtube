@@ -48,10 +48,10 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">
-          <img src="/img/yt_logo.png" alt="YouTube Logo" style="height:40px;">
+    <a class="navbar-brand" href="/json-api">
+          <img src="/img/yt_logo.png" alt="YouTube Logo" style="height:51px;">
     </a>
-  <a class="navbar-brand" style="color:#fff;">YouTube</a>
+  <a class="navbar-brand" style="color:#fff;font-weight:bold;font-family: inherit;font-size: 33px;">YouTube</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -59,7 +59,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
   
     <form class="form-inline my-2 my-lg-0" style="margin-left:24%;">
-      <input class="form-control mr-sm-2" type="text" style="width:500px;" id="search_field" placeholder="Search" aria-label="Search">
+      <input class="form-control mr-sm-2" type="text" style="width:500px;" id="search_field" placeholder="Search for your favorite videos" aria-label="Search">
       <button class="btn my-2 my-sm-0" id="yt_search" style="background-color:#CE2F2B;color:#fff" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
     </form>
  
@@ -77,20 +77,20 @@
 
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-      <script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script></body>
+<script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script></body>
+<script type="text/javascript" src="/css/jquery.simplePagination.js"></script>
 
-
-      <script type="text/javascript">
+<script type="text/javascript">
 
 //document.addEventListener('DOMContentLoaded',function(){
-var key_id = "AIzaSyCLJBWpOsrT3XVs5_fkbtH-BzrWvgLC7xY";
+var key_id = "AIzaSyBEdk9CDHtYM1jb11AJXmnlmsV9joYy5wI";
 var part = "snippet";
-var maxResults = 20;
+var maxResults = 4;
 
    $('#yt_search').click(function(){
      var q = document.getElementById('search_field').value;
-     //var ajaxurl = 'https://www.googleapis.com/youtube/v3/search?part='+part+'&key='+key_id+'&q='+q+'&maxResults='+maxResults;
-     var ajaxurl = 'https://www.googleapis.com/youtube/v3/search?part='+part+'&key='+key_id+'&q='+q;
+     var ajaxurl = 'https://www.googleapis.com/youtube/v3/search?part='+part+'&key='+key_id+'&q='+q+'&maxResults='+maxResults;
+     //var ajaxurl = 'https://www.googleapis.com/youtube/v3/search?part='+part+'&key='+key_id+'&q='+q;
      console.log(ajaxurl);
 
       $.ajax({
@@ -99,9 +99,12 @@ var maxResults = 20;
         dataType:"jsonp",
         success: function(response){
         //console.log(response);
+        
+        
 
           if(response.items){
             $("#result > .row").empty();
+            $("#result > .desc").empty();
             $.each(response.items, function(i,items){
 
               //console.log(items);
@@ -109,9 +112,8 @@ var maxResults = 20;
               var video_id=items.id.videoId;
               var video_title=items.snippet.title;
               // IFRAME Embed for YouTube
-              var video_frame="<div class='col-md-6 col-xs-12'><iframe width='100%' height='385' src='http://www.youtube.com/embed/"+video_id+"' frameborder='0' type='text/html'></iframe></div>";
+              var video_frame="<div class='col-md-6 col-xs-12' style='margin-bottom:40px;'><iframe width='100%' height='385' src='http://www.youtube.com/embed/"+video_id+"' frameborder='0' type='text/html'></iframe><span align='center' style='font-weight:bold;font-size:22px;'>"+video_title+"</span></div>";
               $("#result > .row").append(video_frame); // Result
-
              });
           }
           else{

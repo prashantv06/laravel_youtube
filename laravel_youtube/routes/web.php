@@ -12,10 +12,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('json-api', 'ApiController@index');
+Route::get('/', 'ApiController@index');
 
 //Route::get('get','DataController@getRequest');
